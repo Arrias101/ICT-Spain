@@ -1,0 +1,149 @@
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Game</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="math.css">
+</head>
+<body class="light">
+    <!-- Main container for the game layout -->
+    <div class="container">
+        <div class="header">
+            <!-- Timer display -->
+            <p id="timer">Time Left: 90 seconds</p>
+            <!-- Scoreboard displaying correct and wrong answers -->
+            <div class="scoreboard">
+                <p>Correct: <span id="correct">0</span></p>
+                <p>Wrong: <span id="wrong">0</span></p>
+            </div>
+        </div>
+
+        <!-- Game content area -->
+        <div class="game-content">
+            <h1>Math Game</h1>
+            <!-- Math question display -->
+            <div class="question" id="question">Ready?</div>
+            <!-- Input field for user to enter their answer -->
+            <input type="number" id="answer" placeholder="Input">
+            <!-- Button to submit the answer -->
+            <button id="submit" class="btn">Submit</button>
+            <!-- Start game button -->
+            <button id="start" class="btn">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Button to toggle between dark and light mode -->
+    <button class="toggle-mode" id="toggle-mode">Dark Mode</button>
+
+    <!-- JavaScript starts here -->
+    <script>
+        // DOM elements for easy access
+        const questionElement = document.getElementById('question');
+        const answerElement = document.getElementById('answer');
+        const correctElement = document.getElementById('correct');
+        const wrongElement = document.getElementById('wrong');
+        const timerElement = document.getElementById('timer');
+        const startButton = document.getElementById('start');
+        const submitButton = document.getElementById('submit');
+        const toggleModeButton = document.getElementById('toggle-mode');
+
+        // Variables to track correct/wrong answers, time left, and interval for timer
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+        let timeLeft = 90; // 120 seconds
+        let interval; // Timer interval reference
+        let currentAnswer; // Current correct answer for the question
+
+        // Function to generate a random math question
+        function generateQuestion() {
+            const num1 = Math.floor(Math.random() * 20); // Random number 1
+            const num2 = Math.floor(Math.random() * 20); // Random number 2
+            const operations = ['+', '-', '*', '/']; // Array of operations
+            let operation = operations[Math.floor(Math.random() * operations.length)]; // Random operation
+            
+            // Handle division to avoid decimals, switch to multiplication
+            if (operation === '/') {
+                operation = '*'; // For simplicity, convert division into multiplication
+                currentAnswer = num1 * num2; // Correct answer for multiplication
+                questionElement.textContent = `${num1} * ${num2}`; // Display question
+            } else {
+                currentAnswer = eval(`${num1} ${operation} ${num2}`); // Use eval for other operations
+                questionElement.textContent = `${num1} ${operation} ${num2}`; // Display question
+            }
+        }
+
+        // Function to start the timer and game
+        function startTimer() {
+            interval = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--; // Decrease time left
+                    timerElement.textContent = `Time Left: ${timeLeft}s`; // Update timer display
+                } else {
+                    clearInterval(interval); // Stop timer when time is up
+                    endGame(); // End the game
+                }
+            }, 1000); // Run every second
+        }
+
+        // Function to start the game
+        function startGame() {
+            correctAnswers = 0; // Reset correct answers
+            wrongAnswers = 0; // Reset wrong answers
+            timeLeft = 90; // Reset time
+            correctElement.textContent = correctAnswers; // Reset correct score display
+            wrongElement.textContent = wrongAnswers; // Reset wrong score display
+            timerElement.textContent = `Time Left: 60s`; // Reset timer display
+            answerElement.value = ''; // Clear answer input
+            submitButton.disabled = false; // Enable submit button
+            startButton.style.display = 'none'; // Hide start button during game
+            generateQuestion(); // Generate the first question
+            startTimer(); // Start the timer
+        }
+
+        // Function to handle answer submission
+        function submitAnswer() {
+            const userAnswer = parseFloat(answerElement.value); // Get user answer as number
+            if (!isNaN(userAnswer)) { // Ensure answer is a valid number
+                if (userAnswer == currentAnswer) {
+                    correctAnswers++; // Increment correct answers
+                    correctElement.textContent = correctAnswers; // Update correct answer display
+                } else {
+                    wrongAnswers++; // Increment wrong answers
+                    wrongElement.textContent = wrongAnswers; // Update wrong answer display
+                }
+                generateQuestion(); // Generate a new question
+                answerElement.value = ''; // Clear the input field
+            }
+        }
+
+        // Add click event listener for the submit button
+        submitButton.addEventListener('click', submitAnswer);
+
+        // Add keypress event listener to allow pressing "Enter" to submit the answer
+        answerElement.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') { // Check if the pressed key is Enter
+                submitAnswer(); // Submit the answer
+            }
+        });
+
+        // Function to end the game
+        function endGame() {
+            questionElement.textContent = "Game Over!"; // Display "Game Over"
+            submitButton.disabled = true; // Disable submit button
+            startButton.style.display = 'block'; // Show the start button again
+        }
+
+        // Add click event listener for the start button
+        startButton.addEventListener('click', startGame);
+
+        // Toggle between dark and light modes
+        toggleModeButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark'); // Toggle dark mode
+            document.body.classList.toggle('light'); // Toggle light mode
+            toggleModeButton.textContent = document.body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode'; // Update button text
+        });
+    </script>
+</body>
+</html>

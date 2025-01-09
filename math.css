@@ -1,0 +1,145 @@
+/* Basic body styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  display: flex; /* Center the container horizontally */
+  justify-content: center; /* Align the container in the center horizontally */
+  align-items: center; /* Align the container in the center vertically */
+  height: 100vh; /* Full viewport height */
+  margin: 0; /* Remove default margin */
+  background-color: var(--bg-color); /* Background color based on light/dark mode */
+  color: var(--text-color); /* Text color based on light/dark mode */
+  transition: background-color 0.5s, color 0.5s; /* Smooth transition for mode switch */
+}
+
+/* Define light and dark color variables */
+:root {
+  --bg-color-light: #f2f2f7; /* Light background */
+  --text-color-light: #333; /* Light text color */
+  --bg-color-dark: #1b293b; /* Dark background */
+  --text-color-dark: #f2f2f7; /* Light text color in dark mode */
+}
+
+/* Light mode styles */
+body.light {
+  --bg-color: var(--bg-color-light);  
+  --text-color: var(--text-color-light);
+}
+
+/* Dark mode styles */
+body.dark {
+  --bg-color: var(--bg-color-dark);
+  --text-color: var(--text-color-dark);
+}
+
+/* Container for the game */
+.container {
+  max-width: 350px; /* Max width of container */
+  width: 100%; /* Full width on smaller screens */
+  padding: 20px; /* Padding inside the container */
+  border-radius: 20px; /* Rounded corners */
+  background-color: var(--bg-color); /* Background matches mode */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for a raised effect */
+}
+
+/* Header styles, including the timer and scoreboard */
+.header {
+  display: flex; /* Align timer and scoreboard horizontally */
+  justify-content: space-between; /* Push the timer and scoreboard to opposite sides */
+  margin-bottom: 20px; /* Space below the header */
+  font-size: 1.2em; /* Slightly larger text */
+}
+
+/* Game content styling (question and buttons) */
+.game-content {
+  text-align: center; /* Center everything inside the game content */
+}
+
+/* Main game title styling */
+h1 {
+  font-size: 1.8em; /* Bigger title */
+  margin-bottom: 20px; /* Space below the title */
+  color: var(--text-color); /* Text color based on mode */
+}
+
+/* Question styling */
+.question {
+  font-size: 2em; /* Large font for the question */
+  margin-bottom: 10px; /* Space below the question */
+}
+
+/* Input field for the answer */
+input {
+  font-size: 1.4em; /* Make input text bigger */
+  padding: 10px; /* Add padding inside input for a better feel */
+  border: none; /* Remove default border */
+  border-radius: 20px; /* Rounded corners */
+  margin-bottom: 20px; /* Space below the input field */
+  width: 120px; /* Fixed width for input */
+  text-align: center; /* Center text inside the input */
+  background-color: var(--bg-color); /* Input background matches mode */
+  color: var(--text-color); /* Input text matches mode */
+  border: 1px solid var(--text-color); /* Border matches mode text color */
+  transition: all 0.3s ease; /* Smooth focus transition */
+}
+
+/* Input focus state */
+input:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #2f90d6; /* Change border color on focus */
+}
+
+/* General button styling */
+.btn {
+  padding: 12px 35px; /* Button padding for a good click target */
+  background-color: #8c9ab0; /* Default button color */
+  color: white; /* Button text color */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 1.2em; /* Slightly larger text */
+  margin-top: 10px; /* Space above the button */
+  border-radius: 20px; /* Rounded button */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Hover state for buttons */
+.btn:hover {
+  background-color: #215cda; /* Change background on hover */
+}
+
+/* Disabled button state */
+button:disabled {
+  background-color: #8c9ab0; /* Greyed-out button when disabled */
+}
+
+/* Flexbox styling for the scoreboard */
+.scoreboard {
+  display: flex; /* Align correct/wrong answers horizontally */
+  gap: 20px; /* Add space between correct and wrong answers */
+}
+
+/* Dark/light mode toggle button */
+.toggle-mode {
+  position: absolute; /* Position at the top right corner */
+  top: 20px;
+  right: 20px;
+  background-color: #007BFF; /* Initial blue background */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  padding: 8px 15px; /* Padding for a clickable button */
+  cursor: pointer; /* Pointer cursor on hover */
+  border-radius: 20px; /* Rounded button */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Hover state for dark/light mode toggle */
+.toggle-mode:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Fix for the start button positioning to prevent it from moving */
+#start {
+  display: block; /* Ensure the start button takes up space when hidden */
+  margin-top: 10px; /* Space between submit button and start button */
+  width: 100%; /* Make the button full width */
+  text-align: center; /* Center the text within the button */
+}
