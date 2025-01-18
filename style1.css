@@ -1,0 +1,61 @@
+
+  h1{
+    display: flex; /* Center the container horizontally */
+    align-items: center; /* Align the container in the center vertically */
+    justify-content: center; /* Align the container in the center horizontally */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    border: solid;
+    border-radius: 30%;
+  padding: 20px 35px; /* Button padding for a good click target */
+    background-color: #8c9ab0; /* Default button color */
+    color: white; /* Button text color */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1.2em; /* Slightly larger text */
+    margin-top: 10px; /* Space above the button */
+    border-radius: 20px; /* Rounded button */
+    
+  }
+  h3{
+    display: flex; /* Center the container horizontally */
+    justify-content: center; /* Align the container in the center horizontally */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  .animate{
+    animation-name: start;
+    animation-delay: 1s;
+    animation-timing-function: ease-in-out;
+  }
+  @keyframes start{
+0%{ scale: 0;
+}
+50%{
+    scale: 2;
+}
+100% {
+    scale: 1;
+}
+  }
+  .btn {
+    padding: 12px 35px; /* Button padding for a good click target */
+    background-color: #8c9ab0; /* Default button color */
+    color: white; /* Button text color */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1.2em; /* Slightly larger text */
+    margin-top: 10px; /* Space above the button */
+    border-radius: 20px; /* Rounded button */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    text-align: center;
+    max-width: 350px; /* Max width of container */
+    width: 100%; /* Full width on smaller screens */
+    
+  }
+  .gg{
+    text-align: center;
+  }
+  .btn:hover {
+    background-color: #215cda; /* Change background on hover */
+  }
+  
+  
